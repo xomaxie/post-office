@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "post-office-mcp"
+version = "0.1.0"
+description = "Simple mailbox-based subagent dispatcher for Agent Zero"
+requires-python = ">=3.11"
+dependencies = [
+  "fastmcp>=2.13.1",
+  "openai>=1.99.9",
+  "pydantic>=2.11.7",
+  "starlette>=0.47.0",
+  "uvicorn>=0.35.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "httpx>=0.28.0",
+  "pytest>=9.0.0",
+]
+
+[project.scripts]
+post-office-mcp = "post_office_mcp.server:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["post_office_mcp*"]

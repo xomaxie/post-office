@@ -1,0 +1,15 @@
+[Unit]
+Description=Post Office UI server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/post-office-ui.env
+WorkingDirectory=/opt/post-office
+ExecStart=/opt/post-office/.venv/bin/python -m uvicorn post_office_mcp.ui_server:app --host 127.0.0.1 --port 8765
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
